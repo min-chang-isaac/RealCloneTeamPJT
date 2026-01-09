@@ -2,7 +2,6 @@ package com.example.join.controller;
 
 import com.example.join.entity.Book;
 import com.example.join.service.BookService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
