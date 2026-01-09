@@ -2,7 +2,6 @@ package com.example.join.service;
 
 import com.example.join.entity.Book;
 import com.example.join.repository.BookRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
