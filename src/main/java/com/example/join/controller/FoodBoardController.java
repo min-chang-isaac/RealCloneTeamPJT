@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/foodboards")
+@RequestMapping("/board")
+@CrossOrigin(origins = "http://localhost:3000")
+
 public class FoodBoardController {
     private final FoodBoardService foodboardService;
     // private final BoookService bookService;
