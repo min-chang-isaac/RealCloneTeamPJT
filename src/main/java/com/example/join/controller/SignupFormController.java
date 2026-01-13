@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/signupform")
-@CrossOrigin(origins = "http://localhost:3000")
 public class SignupFormController {
     private final SignupFormService signupformService;
     // private final BoookService bookService;
