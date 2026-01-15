@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>プロフィール</title>
+    <link rel="stylesheet" th:href="@{/profilestyle.css}">
+</head>
+
+<body>
+
+<!-- ヘッダー -->
+<header class="header">
+    <h1>プロフィール</h1>
+</header>
+
+<!-- プロフィールカード -->
+<section class="profile-card">
+
+    <div class="profile-image">
+        <img src="/images/profile.png" alt="profile" />
+    </div>
+
+    <div class="profile-text">
+        <p>
+            JAVAは初心者が素晴らしい言語じゃ。
+        </p>
+    </div>
+
+</section>
+
+<!-- 最近の投稿 -->
+<section class="section">
+    <h2>最近の投稿</h2>
+
+    <div class="item">
+        <span class="tag">雑談</span>
+        <span class="content">BBQ大好き</span>
+        <span class="date">26-01-14</span>
+    </div>
+</section>
+
+<!-- 最近のコメント -->
+<section class="section">
+    <h2>最近のコメント</h2>
+
+    <div class="item">
+        <span class="tag">BBQ大好き</span>
+        <span class="content">実はまずかった</span>
+        <span class="date">26-01-14</span>
+    </div>
+</section>
+
+</body>
+</html>
