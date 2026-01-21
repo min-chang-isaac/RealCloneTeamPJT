@@ -238,7 +238,12 @@
     }
     
     // 댓글 정렬
-    function sortComments(order) {
+	function sortComments(order) {
+	        // ✅ 이미 선택된 정렬이면 아무것도 안 함
+	        if (currentSort === order) {
+	            return;
+			}
+			
         const commentList = document.querySelector('.comment-list');
         const comments = Array.from(commentList.querySelectorAll('.comment'));
         
