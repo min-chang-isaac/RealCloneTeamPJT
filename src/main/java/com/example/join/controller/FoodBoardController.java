@@ -12,4 +12,9 @@ public class FoodBoardController {
         model.addAttribute("message", "제 도쿄 맛집 게시판을 소개합니다🥗");
         return "foodboard"; // templates/home.html
     }
+    // 게시글 작성 페이지
+    @GetMapping("/board/write")
+    public String write() {
+        return "foodboard-write";
+    }
 }
