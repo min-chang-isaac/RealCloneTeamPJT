@@ -22,11 +22,18 @@
 			<div Class="card-body text-center">
 
 				<!-- プロフィール画像 -->
-				<img src="/images/profile.png" class="rounded-circle mb-3"
-					width="120" height="120" alt="profile">
+				<div th:if="${profile != null}">
+					<img th:src="${profile.imagePath}" class="rounded-circle mb-3"
+						width="120" height="120" alt="profile">
 
-				<!-- プロフィール文 -->
-				<p class="card-text">JAVAは初心者が素晴らしい言語じゃ。</p>
+					<!-- プロフィール文 -->
+					<p class="card-text" th:text="${profile.introduction}"></p>
+				</div>
+
+				<div th:if="${profile == null}">
+					<p class="text-muted text-center">プロフィールが見当たりません。</p>
+				</div>
+
 			</div>
 		</div>
 
