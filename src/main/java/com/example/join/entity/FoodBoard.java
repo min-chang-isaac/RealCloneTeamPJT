@@ -10,9 +10,16 @@ public class FoodBoard {
     private Long Id;
     private String content;
     
+    @ManyToOne
+    @JoinColumn(name = "profile_id")
+    private Profile profile;
+    
+    
+    //getterSetter
     public Long getId() {
 		  return Id;
     }
+   
     public void setId(Long Id) {
 	    this.Id = Id;
     }
@@ -22,4 +29,13 @@ public class FoodBoard {
     public void setContent(String content){
 	    this.content = content;
     }    
+    
+    public Profile getProfile() {
+    	return profile;
+    }
+    
+    public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+    
 }
