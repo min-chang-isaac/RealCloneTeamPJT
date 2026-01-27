@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.join.entity.Post;
 import com.example.join.entity.Comment;
 import com.example.join.entity.Like;
+import com.example.join.entity.User;  // ✅ 추가
 import com.example.join.repository.LikeRepository;
 import com.example.join.service.CommentService;
 
@@ -22,16 +23,21 @@ public class PostController {
     
     private Post post = new Post();
     
-    // ✅ 수정: 생성자
     public PostController(LikeRepository likeRepository, CommentService commentService) {
         this.likeRepository = likeRepository;
         this.commentService = commentService;
         
-        post.setId(1L);
-        post.setContent("첫 게시글");
+     // ✅ 추가: 임시 User 생성
+        User tempUser = new User();
+        tempUser.setId(1L);
+        tempUser.setUsername("1234");
         
-        // ✅ 수정: ID를 null로 설정 (JPA가 자동 생성)
-        Comment sampleComment = new Comment(null, 1L, "첫 댓글입니다!", "유저1");
+        // ✅ Post 설정
+        post.setId(1L);
+        post.setContent("こんにちは❣");
+        post.setUser(tempUser);  // ✅ User 연결
+        
+        Comment sampleComment = new Comment(null, 1L, "今日。。。寒いですね！", "ユーザー1");
         sampleComment.setCreatedAt(LocalDateTime.now().minusMinutes(30));
         commentService.save(sampleComment);
     }
@@ -92,7 +98,7 @@ public class PostController {
     public String addComment(@RequestParam String content) {
         if (content != null && !content.trim().isEmpty()) {
             // ✅ ID는 null로 설정 (JPA가 자동 생성)
-            Comment newComment = new Comment(null, post.getId(), content, "익명");
+            Comment newComment = new Comment(null, post.getId(), content, "ユーザー");
             newComment.setCreatedAt(LocalDateTime.now());
             commentService.save(newComment);
         }
@@ -156,7 +162,7 @@ public class PostController {
             @RequestParam String content) {
         if (content != null && !content.trim().isEmpty()) {
             // ✅ ID는 null로 설정 (JPA가 자동 생성)
-            Comment reply = new Comment(null, post.getId(), content, "익명");
+            Comment reply = new Comment(null, post.getId(), content, "ユーザー");
             reply.setParentId(parentId);
             reply.setCreatedAt(LocalDateTime.now());
             commentService.save(reply);
