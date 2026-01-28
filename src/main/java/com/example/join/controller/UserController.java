@@ -90,10 +90,7 @@ public class UserController {
             return "user-login";
         }
     }
-    @GetMapping("/logout")
-    public String showLogoutPage() {
-    	return "logout";
-    }
+    
     @PostMapping("/logout")
     public String processLogout(HttpSession session) {
     	if (session.getAttribute("loginUser") == null) {
