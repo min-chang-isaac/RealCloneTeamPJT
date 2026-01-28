@@ -1,58 +1,46 @@
 package com.example.join.entity;
+
 import jakarta.persistence.*;
 import java.util.List;
 
-
 @Entity
-@Table(name = "USERS")
-@SequenceGenerator(
-	name = "USER_SEQ_GEN",
-	sequenceName = "USER_SEQ",
-	allocationSize = 1
-)
-
+@Table(name = "users")
 public class User {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ_GEN")
-	@Column(name = "USER_ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
 	private Long userId;
 
-	@Column(name = "USER_PW", nullable = false, length = 100)
+	@Column(name = "user_pw", nullable = false)
 	private String password;
 
-	@Column(name = "USER_NAME", nullable = false, length = 50)
+	@Column(name = "user_name", nullable = false)
 	private String userName;
 
-	// ===== PROFILE (1:1, inverse) =====
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
-    private Profile profile;
+	@OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+	private Profile profile;
 
-    // ===== POST (1:N) =====
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Post> posts;
-	
-	
-	//コンストラクタ
-    protected User() {}
+	// コンストラクタ
+	protected User() {
+	}
 
-    public User(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
-    }
-	
-	//getterSetter
-    public Long getUserId() {
-        return userId;
-    }
+	public User(String userName, String password) {
+		this.userName = userName;
+		this.password = password;
+	}
 
-    public String getUserName() {
-        return userName;
-    }
+	// getterSetter
+	public Long getUserId() {
+		return userId;
+	}
 
-    public Profile getProfile() {
-        return profile;
-    }
-	
-	
+	public String getUserName() {
+		return userName;
+	}
+
+	public Profile getProfile() {
+		return profile;
+	}
+
 }

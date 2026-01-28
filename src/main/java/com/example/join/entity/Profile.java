@@ -3,26 +3,23 @@ package com.example.join.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "PROFILE", uniqueConstraints = { @UniqueConstraint(columnNames = "USER_ID") }
-
-)
-@SequenceGenerator(name = "PROFILE_SEQ_GEN", sequenceName = "PROFILE_SEQ", allocationSize = 1)
-
+@Table(name = "profile")
 public class Profile {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROFILE_SEQ_GEN")
-	@Column(name = "PROFILE_ID")
-	private Long profileId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "profile_id")
+    private Long profileId;
 
-	@Column(name = "IMAGE_PATH", length = 255)
-	private String imagePath;
+    @Column(name = "image_path")
+    private String imagePath;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USER_ID", nullable = false, unique = true
+    @Column(name = "introduction", length = 1000)
+    private String introduction;
 
-	)
-	private User user;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
+    private User user;
 
 	// コンストラクタ
 	protected Profile() {
@@ -46,4 +43,12 @@ public class Profile {
 		return user;
 	}
 
+	public String getIntroduction() {
+		return introduction;
+	}
+	
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+	
 }

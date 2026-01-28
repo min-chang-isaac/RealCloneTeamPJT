@@ -21,7 +21,6 @@ public class ProfileController {
 	public String profile(Model model) {
 		Profile profile = profileService.getProfile(1L);
 		model.addAttribute("profile", profile);
-		model.addAttribute("boards", profile.getFoodBoards());
 		return "profile";
 	}
 	
