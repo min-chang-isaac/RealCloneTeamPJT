@@ -17,7 +17,8 @@
 	  <header class="bg-white border-bottom py-3 px-3 d-flex justify-content-between align-items-center">
 	      <a th:href="@{/home}" 
 	         class="d-inline-flex align-items-center justify-content-center" 
-	         style="cursor: pointer; font-size: 24px; line-height: 1; width: 24px; height: 24px; text-decoration: none; color: black;">〈</a>
+	         style="cursor: pointer; font-size: 24px; line-height: 1; width: 24px; height: 24px; text-decoration: none; color: black;"
+	         aria-label="戻る">〈</a>
 	      <span class="fw-bold fs-5">ポスト</span>
 	      
 	      <div>
@@ -28,9 +29,10 @@
 	              </div>
 	          </div>
 	          
-	          <!-- 비로그인 상태일 때 - returnUrl 포함 -->
+	          <!-- 비로그인 상태일 때 - returnUrl에 현재 URL 사용 -->
 	          <div th:if="${session.loginUser == null}">
-	              <a th:href="@{/login(returnUrl='/post')}" class="btn btn-sm btn-outline-primary"
+	              <a th:href="@{/login(returnUrl=${#httpServletRequest.requestURI + (#httpServletRequest.queryString != null ? '?' + #httpServletRequest.queryString : '')})}" 
+	                 class="btn btn-sm btn-outline-primary"
 	                 style="font-size: 0.8rem; border-radius: 20px; padding: 4px 12px; text-decoration:none; font-weight: 500;">
 	                 LOGIN
 	              </a>
