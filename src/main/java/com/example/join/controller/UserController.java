@@ -58,6 +58,11 @@ public class UserController {
             return "user-signup";
         }
         userService.registerUser(username, name, password, region, prefecture);
+        
+        // returnUrl이 있으면 login 페이지로 리다이렉트할 때 함께 전달
+        if (returnUrl != null && !returnUrl.isEmpty()) {
+            return "redirect:/login?returnUrl=" + returnUrl;
+        }
         return "redirect:/login";
     }
     
@@ -79,6 +84,7 @@ public class UserController {
             System.out.println("✅ 로그인 성공!");
             session.setAttribute("loginUser", user);
             
+            // returnUrl이 있으면 해당 페이지로 리다이렉트
             if(returnUrl != null && !returnUrl.isEmpty()) {
                 return "redirect:" + returnUrl;
             }
